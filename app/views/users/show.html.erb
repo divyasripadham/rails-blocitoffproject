@@ -1,4 +1,9 @@
-<h1>Your email: </h1>
+<h1>Your email</h1>
 <p><%= current_user.email %></p>
-<h1>Sign in count: </h1>
+<h1>Sign in count</h1>
 <p><%= current_user.sign_in_count %></p>
+
+<h1>Your items</h1>
+<%= render current_user.items %>
+
+<%= render 'items/form', item: Item.new, user: current_user %>
