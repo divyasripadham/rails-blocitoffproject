@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+
   def create
     @user = User.find(params[:user_id])
     @item = @user.items.new(item_params)
@@ -9,6 +10,18 @@ class ItemsController < ApplicationController
       flash[:error] = "There was an error saving the item. Please try again."
     end
     redirect_to user_path(@user)
+  end
+
+  def destroy
+     @user = User.find(params[:user_id])
+     @item = @user.items.find(params[:id])
+
+     if @item.destroy
+       flash[:notice] = "Item was deleted."
+     else
+       flash[:error] = "Item couldn't be deleted. Try again."
+     end
+     redirect_to user_path(@user)
   end
 
   private
