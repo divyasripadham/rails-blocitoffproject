@@ -3,7 +3,7 @@
    <div class="media-body">
      <p><%= item.name %><%= link_to "Delete", [item.user, item], method: :delete, class: "glyphicon glyphicon-ok", remote: true %></p>
      <small>
-       Created <%= time_ago_in_words(item.created_at) %> ago
+       Created <%= time_ago_in_words(item.created_at) %> ago. Time left: <%= distance_of_time_in_words(Time.now, item.created_at + 7.days) %>
      </small>
    </div>
  </div>
