@@ -18,6 +18,14 @@ RSpec.describe ItemsController, type: :controller do
       expect(response).to redirect_to(user_path(my_user))
     end
 
+    it "flashes alert on failure and redirects to user show page" do
+      allow_any_instance_of(Item).to receive(:save).and_return(false)
+      post :create, user_id: my_user.id, item: {name: 'Todo Item'}
+
+      expect(controller).to set_flash[:error].to(/There was an error saving the item. Please try again./).now
+      expect(response).to redirect_to(user_path(my_user))
+    end
+
     it "list of items includes new item for this user" do
       post :create, user_id: my_user.id, item: {name: 'Todo Item'}
       last_item = Item.last

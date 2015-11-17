@@ -1,9 +1,9 @@
 <%= content_tag :div, class: 'media', id: "item-#{item.id}" do %>
 <div class="media">
    <div class="media-body">
-     <p><%= item.name %><%= link_to "Delete", [item.user, item], method: :delete, class: "glyphicon glyphicon-ok", remote: true %></p>
+     <p><%= item.name %><%= link_to "", [item.user, item], method: :delete, class: "glyphicon glyphicon-ok", remote: true %></p>
      <small>
-       Created <%= time_ago_in_words(item.created_at) %> ago. Time left: <%= distance_of_time_in_words(Time.now, item.created_at + 7.days) %>
+       Created <%= distance_of_time_in_words(item.created_at.to_date, Date.today) %> ago. Time left: <%= days_left(item) %>
      </small>
    </div>
  </div>
